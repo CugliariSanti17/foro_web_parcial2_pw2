@@ -82,48 +82,7 @@
                         <?php 
                     }
                 ?>
-                <!-- Discusion de prueba 1 -->
                 
-                <!-- Discusion de prueba 2 -->
-                <article class="card-tema">
-                    <div class="tema-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>18</span>
-                    </div>
-                    <div class="tema-contenido">
-                        <span class="etiqueta color-2">Diseño</span>
-                        <h2><a href="tema.php">Teoría del color aplicada a interfaces web</a></h2>
-                        <p class="tema-meta">Publicado por <strong>@ana_ux</strong> ayer • 8 respuestas</p>
-                    </div>
-                </article>
-
-                <!-- Discusion de prueba 3 -->
-                <article class="card-tema">
-                    <div class="tema-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>0</span>
-                    </div>
-                    <div class="tema-contenido">
-                        <span class="etiqueta color-1">Desarrollo</span>
-                        <h2><a href="./tema.php">Problema conectando PDO con MySQL 8.0</a></h2>
-                        <p class="tema-meta">Publicado por <strong>@rookie_dev</strong> hace 5 horas • 0 respuestas</p>
-                    </div>
-                </article>
-
-                <!-- Discusion de prueba 4 -->
-                <article class="card-tema">
-                    <div class="tema-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>112</span>
-                    </div>
-                    <div class="tema-contenido">
-                        <span class="etiqueta color-3">General</span>
-                        <h2><a href="./tema.php">Compartan sus setups de trabajo (Edición 2026)</a></h2>
-                        <p class="tema-meta">Publicado por <strong>@admin</strong> hace 1 semana • 45 respuestas</p>
-                    </div>
-                </article>
-            </div>
-
             <!-- Paginación (ver si dejarlo o no) -->
             <div class="paginacion">
                 <button class="btn btn-ghost" disabled>← Anterior</button>
@@ -136,7 +95,6 @@
                 </div>
                 <button class="btn btn-ghost">Siguiente →</button>
             </div>
-
         </main>
 
         <!-- Barra lateral con llamados a la accion y estadisticas -->

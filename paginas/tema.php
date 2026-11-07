@@ -134,38 +134,6 @@
                         }
                     }
                     ?>
-
-                <!-- Comentario de prueba -->
-                <article class="comentario-card">
-                    <div class="comentario-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>15</span>
-                    </div>
-                    <div class="comentario-contenido">
-                        <div class="comentario-meta">
-                            <strong>@ana_ux</strong> <span>• hace 2 horas</span>
-                        </div>
-                        <p>Para empezar, te sugiero crear al menos tres carpetas: <code>/assets</code> (para CSS, JS e
-                            imágenes), <code>/includes</code> (para tu nav, footer y conexión a la BD) y dejar en la
-                            raíz solo las páginas que el usuario visita directamente (index, tema, login).</p>
-                    </div>
-                </article>
-
-                <!-- Comentario de prueba -->
-                <article class="comentario-card">
-                    <div class="comentario-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>3</span>
-                    </div>
-                    <div class="comentario-contenido">
-                        <div class="comentario-meta">
-                            <strong class="rol-admin">@admin</strong> <span>• hace 1 hora</span>
-                        </div>
-                        <p>Totalmente de acuerdo con Ana. No hace falta que uses un patrón MVC completo al principio.
-                            Mantén la lógica simple pero separada del HTML repetitivo.</p>
-                    </div>
-                </article>
-
             </section>
 
             <!-- Formulario para responder -->
