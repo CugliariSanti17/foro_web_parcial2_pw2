@@ -1,0 +1,88 @@
+.header-reglas {
+    background-color: #ff6b6b;
+    color: #fff;
+    border-bottom: 2px solid #1a1a1a;
+}
+
+.header-reglas p {
+    color: #fdfbf7;
+}
+
+.lista-reglas {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Tarjeta de cada regla */
+.regla-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    padding: 2rem;
+    box-shadow: 4px 4px 0px #1a1a1a;
+    gap: 1.5rem;
+}
+
+.regla-numero {
+    font-size: 1.5rem;
+    font-weight: 900;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1a1a1a;
+    border-radius: 50%;
+    box-shadow: 2px 2px 0px #1a1a1a;
+}
+
+.regla-contenido h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #1a1a1a;
+}
+
+.regla-contenido p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Sidebar advertencia */
+.card-advertencia {
+    background-color: #fdfbf7;
+    border-color: #ff6b6b;
+    box-shadow: 4px 4px 0px #ff6b6b;
+}
+
+.card-advertencia h3 {
+    border-bottom-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.lista-consecuencias {
+    margin-top: 1rem;
+    list-style-position: inside;
+    color: #333;
+}
+
+.lista-consecuencias li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid #ff6b6b;
+}
+
+/* Responsive extra para las reglas */
+@media (max-width: 768px) {
+    .regla-card {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    
+    .regla-numero {
+        margin-bottom: 0.5rem;
+    }
+}
