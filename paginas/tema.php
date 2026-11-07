@@ -126,7 +126,7 @@
                                         </span>
                                     </div>
                                     <p>
-                                        <?=htmlspecialchars($respuesta['contenido'])?>
+                                        <?=nl2br(htmlspecialchars($respuesta['contenido']))?>
                                     </p>
                                 </div>
                             </article>
