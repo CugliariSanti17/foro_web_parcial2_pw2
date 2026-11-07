@@ -1,3 +1,11 @@
+<?php 
+    require_once 'conexion.php';
+
+    $sql_categorias = 'SELECT nombre, color_etiqueta FROM categorias LIMIT 10';
+
+    $resultado_categorias = mysqli_query($conexion, $sql_categorias);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +31,6 @@
 
     <div class="container">
         <main class="foro-main">
-
-            <?php 
-                require_once 'conexion.php';
-
-                $sql = 'SELECT * FROM temas';
-
-                $resultado = mysqli_query($conexion, $sql);
-            ?>
             <!-- Discusion de prueba 1 -->
             <article class="card-tema">
                 <div class="tema-votos">
@@ -89,10 +89,13 @@
             <div class="card-sidebar">
                 <h3>Etiquetas Populares</h3>
                 <div class="tag-cloud">
-                    <span class="etiqueta color-1">Desarrollo</span>
-                    <span class="etiqueta color-2">Diseño</span>
-                    <span class="etiqueta color-3">General</span>
-                    <span class="etiqueta">Off-topic</span>
+                    <?php 
+                        while($categoria = mysqli_fetch_assoc($resultado_categorias)){
+                        ?>
+                            <span class="etiqueta <?=$categoria['color_etiqueta']?>"><?=$categoria['nombre']?></span>
+                        <?php
+                        }
+                    ?>
                 </div>
             </div>
         </aside>
