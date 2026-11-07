@@ -23,6 +23,14 @@
 
     <div class="container">
         <main class="foro-main">
+
+            <?php 
+                require_once 'conexion.php';
+
+                $sql = 'SELECT * FROM temas';
+
+                $resultado = mysqli_query($conexion, $sql);
+            ?>
             <!-- Discusion de prueba 1 -->
             <article class="card-tema">
                 <div class="tema-votos">
@@ -30,7 +38,7 @@
                     <span>42</span>
                 </div>
                 <div class="tema-contenido">
-                    <span class="etiqueta color-1">Desarrollo</span>
+                    <span class="etiqueta rojo">Desarrollo</span>
                     <h2><a href="./paginas/tema.php">¿Cómo estructurar un proyecto desde cero?</a></h2>
                     <p class="tema-meta">Publicado por <strong>@dev_juan</strong> hace 2 horas • 15 respuestas</p>
                 </div>
@@ -43,7 +51,7 @@
                     <span>18</span>
                 </div>
                 <div class="tema-contenido">
-                    <span class="etiqueta color-2">Diseño</span>
+                    <span class="etiqueta azul">Diseño</span>
                     <h2><a href="./paginas/tema.php">Teoría del color aplicada a interfaces web</a></h2>
                     <p class="tema-meta">Publicado por <strong>@ana_ux</strong> ayer • 8 respuestas</p>
                 </div>
@@ -56,7 +64,7 @@
                     <span>5</span>
                 </div>
                 <div class="tema-contenido">
-                    <span class="etiqueta color-3">General</span>
+                    <span class="etiqueta amarillo">General</span>
                     <h2><a href="./paginas/tema.php">Presentaciones de nuevos usuarios (2026)</a></h2>
                     <p class="tema-meta">Publicado por <strong>@admin</strong> hace 3 días • 120 respuestas</p>
                 </div>

@@ -226,9 +226,9 @@ body {
     text-transform: uppercase;
 }
 
-.color-1 { background-color: #ff6b6b; color: #fff; }
-.color-2 { background-color: #4ecdc4; }
-.color-3 { background-color: #ffe66d; }
+.rojo { background-color: #ff6b6b; color: #fff; }
+.azul { background-color: #4ecdc4; }
+.amarillo { background-color: #ffe66d; }
 
 /* --- Sidebar --- */
 .card-sidebar {

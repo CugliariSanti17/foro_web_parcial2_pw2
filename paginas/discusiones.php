@@ -1,3 +1,20 @@
+ <?php 
+    require_once '../conexion.php';
+
+    $sql_discusiones = "SELECT 
+        temas.*,
+        usuarios.username,
+        categorias.nombre AS nombre_categoria,
+        categorias.color_etiqueta
+        FROM temas
+        INNER JOIN usuarios ON temas.id_usuario = usuarios.id_usuario
+        INNER JOIN categorias on temas.id_categoria = categorias.id_categoria
+        ORDER BY temas.fecha_creacion DESC
+    ";
+
+    $resultado_discusiones = mysqli_query($conexion, $sql_discusiones);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,19 +58,26 @@
 
             <!-- Discusiones -->
             <div class="lista-temas">
-                <!-- Discusion de prueba 1 -->
-                <article class="card-tema">
-                    <div class="tema-votos">
-                        <button class="btn-voto">▲</button>
-                        <span>42</span>
-                    </div>
-                    <div class="tema-contenido">
-                        <span class="etiqueta color-1">Desarrollo</span>
-                        <h2><a href="./tema.php">¿Cómo estructurar un proyecto desde cero?</a></h2>
-                        <p class="tema-meta">Publicado por <strong>@dev_juan</strong> hace 2 horas • 15 respuestas</p>
-                    </div>
-                </article>
 
+                <?php 
+                    while ($discusion = mysqli_fetch_assoc($resultado_discusiones)){
+                    ?>
+                        <article class="card-tema">
+                            <div class="tema-votos">
+                                <button class="btn-voto">▲</button>
+                                <span><?= $discusion['likes'] ?></span>
+                            </div>
+                            <div class="tema-contenido">
+                                <span class="etiqueta <?=$discusion['color_etiqueta']?>"><?= $discusion['nombre_categoria']?></span>
+                                <h2><a href="./tema.php?id=<?=$discusion['id_tema']?>"><?= htmlspecialchars($discusion['titulo'])?></a></h2>
+                                <p class="tema-meta">Publicado por <strong><?= htmlspecialchars($discusion['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($discusion['fecha_creacion'])) ?> • <?=$discusion['vistas']?> vistas</p>
+                            </div>
+                        </article>
+                        <?php 
+                    }
+                ?>
+                <!-- Discusion de prueba 1 -->
+                
                 <!-- Discusion de prueba 2 -->
                 <article class="card-tema">
                     <div class="tema-votos">
