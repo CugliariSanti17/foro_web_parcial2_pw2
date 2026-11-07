@@ -12,7 +12,13 @@
         ORDER BY temas.fecha_creacion DESC
     ";
 
+    $sql_respuestas = 'SELECT * FROM respuestas';
+
+    $sql_usuarios = 'SELECT username FROM usuarios';
+
     $resultado_discusiones = mysqli_query($conexion, $sql_discusiones);
+    $resultado_respuestas = mysqli_query($conexion, $sql_respuestas);
+    $resultado_usuarios = mysqli_query($conexion, $sql_usuarios);
 ?>
 
 <!DOCTYPE html>
@@ -144,9 +150,9 @@
             <div class="card-sidebar">
                 <h3>Estadísticas Globales</h3>
                 <ul class="stats-list">
-                    <li>Temas totales: <strong>1,402</strong></li>
-                    <li>Respuestas: <strong>8,930</strong></li>
-                    <li>Usuarios: <strong>450</strong></li>
+                    <li>Temas totales: <strong><?=mysqli_num_rows($resultado_discusiones)?></strong></li>
+                    <li>Respuestas: <strong><?=mysqli_num_rows($resultado_respuestas)?></strong></li>
+                    <li>Usuarios: <strong><?=mysqli_num_rows($resultado_usuarios)?></strong></li>
                 </ul>
             </div>
         </aside>
