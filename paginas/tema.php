@@ -40,6 +40,8 @@
     ";
 
     $resultado_respuestas = mysqli_query($conexion, $sql_respuestas);
+
+    $id_usuario_actual = 1; // Variable de prueba hasta tener session 
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +87,7 @@
 
                 <div class="tema-cuerpo">
                     <p>
-                        <?=htmlspecialchars($tema['contenido'])?>
+                        <?=nl2br(htmlspecialchars($tema['contenido']))?>
                     </p>
                 </div>
 
@@ -105,7 +107,7 @@
             <section class="seccion-respuestas">
                 <h2>Respuestas (<?=mysqli_num_rows($resultado_respuestas)?>)</h2>
                 <?php 
-                    if(mysqli_num_rows($resultado_respuestas) === 0){
+                    if(mysqli_num_rows($resultado_respuestas) == 0){
                         echo "<p>El tema no posee comentarios por el momento.</p>";
                     }else{
                         while($respuesta = mysqli_fetch_assoc($resultado_respuestas)){
@@ -128,6 +130,21 @@
                                     <p>
                                         <?=nl2br(htmlspecialchars($respuesta['contenido']))?>
                                     </p>
+
+                                    <?php 
+                                        if($respuesta['id_usuario'] == $id_usuario_actual){
+                                        ?>
+                                            <form action="../eliminar_respuesta.php" method="POST" class="form-eliminar">
+                                                <input type="hidden" name="id_respuesta" value="<?=$respuesta['id_respuesta']?>">
+                                                <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>"> 
+            
+                                                <button type="submit" class="btn btn-solid btn-eliminar" onclick="return confirm('¿Estás seguro de que quieres borrar tu respuesta?')">
+                                                    Eliminar
+                                                </button>
+                                            </form>      
+                                            <?php                                  
+                                        }
+                                    ?>
                                 </div>
                             </article>
                             <?php
@@ -139,15 +156,14 @@
             <!-- Formulario para responder -->
             <section class="caja-respuesta">
                 <h3>Dejar una respuesta</h3>
-                <form action="#" method="POST">
+                <form action="../guardar_respuesta.php" method="POST">
                     <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
 
                     <textarea placeholder="Escribe tu respuesta aquí... Sé respetuoso y aporta valor." rows="5"
-                        class="input-textarea"></textarea>
+                        class="input-textarea" name="contenido"></textarea>
                     <button type="submit" class="btn btn-solid">Publicar respuesta</button>
                 </form>
             </section>
-
         </main>
 
         <!-- Barra lateral con información -->
