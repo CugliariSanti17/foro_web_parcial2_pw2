@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* --- Botones (Estilo sombra sólida) --- */
 .btn {
     padding: 0.5rem 1rem;
     font-weight: bold;
@@ -51,7 +50,6 @@ body {
     margin-top: 1rem;
 }
 
-/* --- Navegación --- */
 .site-nav {
     display: flex;
     justify-content: space-between;
@@ -86,12 +84,74 @@ body {
     text-underline-offset: 4px;
 }
 
-.nav-actions {
+.nav-acciones {
     display: flex;
     gap: 1rem;
 }
 
-/* --- Header del Foro --- */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.saludo-usuario {
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-contenido {
+    display: none;
+    position: absolute;
+    right: 0; 
+    top: 100%; 
+    background-color: #ffffff;
+    min-width: 170px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    z-index: 100;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.dropdown-content a {
+    color: #334155;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.dropdown-content hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
+.dropdown-content a:hover {
+    background-color: #f8fafc;
+}
+
+.dropdown-content a.logout-link {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.dropdown-content a.logout-link:hover {
+    background-color: #fef2f2;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .foro-header {
     text-align: center;
     padding: 3rem 1rem;
@@ -127,7 +187,6 @@ body {
     background-color: #fff;
 }
 
-/* --- Estructura Principal --- */
 .container {
     display: flex;
     max-width: 1100px;
@@ -151,7 +210,6 @@ body {
     gap: 2rem;
 }
 
-/* --- Tarjetas de Temas (Hilos) --- */
 .card-tema {
     display: flex;
     background-color: #fff;
@@ -214,7 +272,6 @@ body {
     color: #555;
 }
 
-/* Etiquetas (Tags) */
 .etiqueta {
     display: inline-block;
     padding: 0.2rem 0.6rem;
@@ -230,7 +287,6 @@ body {
 .azul { background-color: #4ecdc4; }
 .amarillo { background-color: #ffe66d; }
 
-/* --- Sidebar --- */
 .card-sidebar {
     background-color: #fff;
     border: 2px solid #1a1a1a;
@@ -251,7 +307,6 @@ body {
     gap: 0.5rem;
 }
 
-/* --- Footer --- */
 .site-footer {
     background-color: #1a1a1a;
     color: #fdfbf7;

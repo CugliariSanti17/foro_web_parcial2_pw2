@@ -10,8 +10,18 @@
         <a href="/Cugliari_Santiago_2doParcial_PW2/paginas/sugerencias.php" class="nav-item">Sugerencias</a>
     </div>
 
-    <div class="nav-actions">
-        <a href="/Cugliari_Santiago_2doParcial_PW2/paginas/login.php" class="btn btn-ghost">Entrar</a>
-        <a href="/Cugliari_Santiago_2doParcial_PW2/paginas/registro.php" class="btn btn-solid">Crear cuenta</a>
+    <div class="nav-acciones user-menu">
+        <span class="saludo-usuario">Hola, <strong>Usuario</strong></span>
+
+        <div class="dropdown">
+            <button class="btn btn-ghost">Opciones ⋮</button>
+            <div class="dropdown-contenido">
+                <a href="#">Mi perfil</a>
+                <a href="#">Ver usuarios</a>
+                <a href="#">Ver temas</a>
+                <hr>
+                <a href="#" class="logout-link">Cerrar sesion</a>
+            </div>
+        </div>
     </div>
 </nav>
