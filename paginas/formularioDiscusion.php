@@ -1,3 +1,11 @@
+<?php 
+    require_once '../conexion.php';
+
+    $sql_categorias = 'SELECT id_categoria, nombre FROM categorias';
+
+    $resultado_categorias = mysqli_query($conexion, $sql_categorias);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +32,7 @@
     <div class="container contenedor-centrado">
         <main class="form-card w-100">
             <!--Formulario para creacion / edicion de temas -->
-            <form action="#" method="POST" class="formulario-brutal">
+            <form action="../guardar_tema.php" method="POST" class="formulario-brutal">
                 
                 <div class="form-group">
                     <label for="titulo">Título del tema</label>
@@ -35,9 +43,13 @@
                     <label for="categoria">Categoría</label>
                     <select id="categoria" name="categoria" required>
                         <option value="" disabled selected>Selecciona dónde publicar...</option>
-                        <option value="1">Desarrollo</option>
-                        <option value="2">Diseño</option>
-                        <option value="3">General</option>
+                        <?php 
+                            while($resultado = mysqli_fetch_assoc($resultado_categorias)){
+                               ?>
+                                <option value="<?=$resultado['id_categoria']?>"><?= $resultado['nombre']?></option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
 

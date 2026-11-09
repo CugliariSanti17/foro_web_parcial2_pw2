@@ -1,0 +1,39 @@
+<?php 
+    require_once './conexion.php';
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $titulo = $_POST['titulo'];
+        $contenido = $_POST['contenido'];
+        $id_categoria = $_POST['categoria'];
+
+        $id_usuario_actual = 1; //LINEA PROVISORIA HASTA APLICAR SESSION 
+
+        if(empty($titulo) || empty($contenido) || empty($id_categoria)){
+            echo "<p>Todos los campos deben ser completados</p>";
+        }
+
+        if(strlen($contenido) <= 5){
+            echo "<p>El contenido debe tener más de 5 caracteres</p>";
+        }
+
+        $sql_publicar_tema = 'INSERT INTO temas (titulo, contenido, id_categoria, id_usuario, fecha_creacion) VALUES (?, ?, ?, ?, NOW())';
+
+        $stmt = mysqli_prepare($conexion, $sql_publicar_tema);
+
+        if($stmt){
+            mysqli_stmt_bind_param($stmt, 'ssii', $titulo, $contenido, $id_categoria, $id_usuario_actual);
+
+            if(mysqli_stmt_execute($stmt)){
+                header("Location: paginas/discusiones.php");
+                exit();
+            }else {
+                echo "<p>Error al guardar el tema</p>";
+            }
+            mysqli_stmt_close($stmt);
+        }else{
+            echo "<p>Error preparando la consulta SQL</p>";
+        }
+    }else{
+        echo "<p>Acceso denegado</p>";
+    }
+?>
