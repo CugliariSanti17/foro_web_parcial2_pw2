@@ -94,7 +94,7 @@
                 <div class="tema-acciones">
                     <form action="../dar_like_tema.php" method="POST">
                         <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
-                        <button class="btn btn-ghost">▲<?=$tema['likes']?> Likes</button>
+                        <button class="btn btn-ghost">👍<?=$tema['likes']?> Likes</button>
                     </form>
                     <button class="btn btn-ghost">Compartir</button>
                 </div>
@@ -117,7 +117,7 @@
                                 <div class="comentario-votos">
                                     <form action="../dar_like_respuesta.php" method="POST">
                                         <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
-                                        <button class="btn-voto">▲</button>
+                                        <button class="btn-voto">👍</button>
                                     </form>
                                     <span>
                                         <?=$respuesta['likes'] ?> Likes

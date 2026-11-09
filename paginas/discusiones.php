@@ -9,16 +9,26 @@
         FROM temas
         INNER JOIN usuarios ON temas.id_usuario = usuarios.id_usuario
         INNER JOIN categorias on temas.id_categoria = categorias.id_categoria
-        ORDER BY temas.fecha_creacion DESC
     ";
+
+    if(isset($_GET['id_categoria']) && is_numeric($_GET['id_categoria'])){
+        $id_categoria = (int) $_GET['id_categoria'];
+
+        $sql_discusiones .= " WHERE temas.id_categoria = $id_categoria";
+    }
+
+    $sql_discusiones .= " ORDER BY temas.fecha_creacion DESC"; 
 
     $sql_respuestas = 'SELECT * FROM respuestas';
 
     $sql_usuarios = 'SELECT username FROM usuarios';
 
+    $sql_categorias = 'SELECT nombre, id_categoria FROM categorias';
+
     $resultado_discusiones = mysqli_query($conexion, $sql_discusiones);
     $resultado_respuestas = mysqli_query($conexion, $sql_respuestas);
     $resultado_usuarios = mysqli_query($conexion, $sql_usuarios);
+    $resultado_categorias = mysqli_query($conexion, $sql_categorias);
 ?>
 
 <!DOCTYPE html>
@@ -47,10 +57,14 @@
             <!-- Filtros -->
             <div class="filtros-bar">
                 <div class="filtros-grupo">
-                    <button class="btn btn-solid btn-sm">Todos</button>
-                    <button class="btn btn-ghost btn-sm">Desarrollo</button>
-                    <button class="btn btn-ghost btn-sm">Diseño</button>
-                    <button class="btn btn-ghost btn-sm">General</button>
+                    <a class="btn btn-solid btn-sm" href="./discusiones.php">Todos</a>
+                    <?php 
+                        while($respuesta = mysqli_fetch_assoc($resultado_categorias)){
+                            ?>
+                            <a href="./discusiones.php?id_categoria=<?=$respuesta['id_categoria']?>" class="btn btn-ghost btn-sm"><?=$respuesta['nombre']?></a>
+                            <?php
+                        }
+                    ?>
                 </div>
 
                 <div class="orden-grupo">
@@ -70,7 +84,7 @@
                     ?>
                         <article class="card-tema">
                             <div class="tema-votos">
-                                <button class="btn-voto">▲</button>
+                                <p class="btn-voto">👍</p>
                                 <span><?= $discusion['likes'] ?></span>
                             </div>
                             <div class="tema-contenido">
