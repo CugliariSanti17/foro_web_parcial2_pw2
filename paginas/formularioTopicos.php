@@ -24,7 +24,7 @@
         <main class="form-card w-100">
 
         <!--Formulario para la creacion de tópicos -->
-            <form action="#" method="POST" class="formulario-brutal">
+            <form action="../guardar_categoria.php" method="POST" class="formulario-brutal">
                 
                 <div class="form-group">
                     <label for="nombre_categoria">Nombre de la Categoría</label>

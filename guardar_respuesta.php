@@ -26,12 +26,12 @@
                 header("Location: paginas/tema.php?id=" . $id_tema);
                 exit();
             }else {
-                echo "<p>Error al guardar la respuesta: " . mysqli_error($conexion) . "</p>";
+                echo "<p>Error al guardar la respuesta</p>";
             }
 
             mysqli_stmt_close($stmt);
         }else{
-            echo "<p>Error preparando la consulta SQL: " . mysqli_error($conexion) . "</p>";
+            echo "<p>Error preparando la consulta SQL</p>";
         }     
     }else{
         echo "<p>Acceso denegado</p>";
