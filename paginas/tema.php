@@ -106,7 +106,7 @@
                         <form action="../editar_tema.php" method="POST" class="tema-acciones">
                             <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
 
-                            <button class="btn btn-ghost">Editar</button>
+                            <a href="./formularioDiscusion.php?id=<?=$tema['id_tema']?>" class="btn btn-ghost">Editar</a>
                         </form>
                     <?php
                     } 

@@ -12,6 +12,10 @@
             echo "<p>Todos los campos deben ser completados</p>";
         }
 
+         if(strlen($titulo) <= 5){
+            echo "<p>El titulo debe tener más de 5 caracteres</p>";
+        }
+
         if(strlen($contenido) <= 5){
             echo "<p>El contenido debe tener más de 5 caracteres</p>";
         }
