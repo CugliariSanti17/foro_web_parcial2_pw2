@@ -277,7 +277,19 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive */
+.mensaje-visita {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #64748b; 
+    background-color: #f8fafc; 
+    padding: 6px 14px;
+    border-radius: 20px; 
+    border: 1px solid #e2e8f0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;

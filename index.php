@@ -3,6 +3,14 @@
 
     require_once './componentes/select_temas_index.php';
 
+    if(isset($_COOKIE['ultima_visita'])){
+        $mensaje_cookie = "Tu ultima visita fue el " . $_COOKIE['ultima_visita'];
+    }else{
+        $mensaje_cookie = "Bienvenido por primera vez al foro";
+    }
+
+    setcookie('ultima_visita', date('d/m/Y H:i'), time() + (86400 * 30), "/");
+
     $sql_categorias = 'SELECT nombre, color_etiqueta FROM categorias LIMIT 10';
 
     $resultado_categorias = mysqli_query($conexion, $sql_categorias);
@@ -25,6 +33,11 @@
     <header class="foro-header">
         <h1>Foro Principal</h1>
         <p>Lee, comenta y comparte conocimiento en nuestra comunidad.</p>
+
+        <p class="mensaje-visita">
+            <?= $mensaje_cookie ?>
+        </p>
+        
         <div class="search-box">
             <input type="text" placeholder="Buscar palabras clave...">
             <button class="btn btn-solid">Buscar</button>
