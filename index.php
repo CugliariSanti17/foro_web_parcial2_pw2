@@ -1,5 +1,7 @@
 <?php 
-    require_once 'conexion.php';
+    require_once './conexion.php';
+
+    require_once './componentes/select_temas_index.php';
 
     $sql_categorias = 'SELECT nombre, color_etiqueta FROM categorias LIMIT 10';
 
@@ -31,44 +33,23 @@
 
     <div class="container">
         <main class="foro-main">
-            <!-- Discusion de prueba 1 -->
-            <article class="card-tema">
-                <div class="tema-votos">
-                    <button class="btn-voto">▲</button>
-                    <span>42</span>
-                </div>
-                <div class="tema-contenido">
-                    <span class="etiqueta rojo">Desarrollo</span>
-                    <h2><a href="./paginas/tema.php">¿Cómo estructurar un proyecto desde cero?</a></h2>
-                    <p class="tema-meta">Publicado por <strong>@dev_juan</strong> hace 2 horas • 15 respuestas</p>
-                </div>
-            </article>
-
-            <!-- Discusion de prueba 2 -->
-            <article class="card-tema">
-                <div class="tema-votos">
-                    <button class="btn-voto">▲</button>
-                    <span>18</span>
-                </div>
-                <div class="tema-contenido">
-                    <span class="etiqueta azul">Diseño</span>
-                    <h2><a href="./paginas/tema.php">Teoría del color aplicada a interfaces web</a></h2>
-                    <p class="tema-meta">Publicado por <strong>@ana_ux</strong> ayer • 8 respuestas</p>
-                </div>
-            </article>
-
-             <!-- Discusion de prueba 3 -->
-             <article class="card-tema">
-                <div class="tema-votos">
-                    <button class="btn-voto">▲</button>
-                    <span>5</span>
-                </div>
-                <div class="tema-contenido">
-                    <span class="etiqueta amarillo">General</span>
-                    <h2><a href="./paginas/tema.php">Presentaciones de nuevos usuarios (2026)</a></h2>
-                    <p class="tema-meta">Publicado por <strong>@admin</strong> hace 3 días • 120 respuestas</p>
-                </div>
-            </article>
+            <?php 
+                while($respuesta = mysqli_fetch_assoc($resultado_temas)){
+                ?>
+                    <article class="card-tema">
+                        <div class="tema-votos">
+                            <button class="btn-voto">👍</button>
+                            <span><?=$respuesta['likes']?></span>
+                        </div>
+                        <div class="tema-contenido">
+                            <span class="etiqueta rojo"><?=htmlspecialchars($respuesta['nombre_categoria'])?></span>
+                            <h2><a href="./paginas/tema.php?id=<?=$respuesta['id_tema']?>"><?=htmlspecialchars($respuesta['titulo'])?></a></h2>
+                            <p class="tema-meta">Publicado por <strong><?=htmlspecialchars($respuesta['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($respuesta['fecha_creacion']))?></p>
+                        </div>
+                    </article>
+                    <?php
+                    }
+            ?>
         </main>
 
         <!--Información extra con llamados a la accion-->
