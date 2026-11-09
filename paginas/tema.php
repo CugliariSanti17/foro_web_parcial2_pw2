@@ -1,7 +1,5 @@
 <?php 
-    require_once '../conexion.php';
-
-    
+    require_once '../conexion.php';    
 
     if (!isset($_GET['id']) || !is_numeric($_GET['id'])){
         die("Error: Tema no encontrado o URL inválida.");
@@ -98,10 +96,32 @@
                     </form>
                     <button class="btn btn-ghost">Compartir</button>
                 </div>
+                <?php 
+                    $tiempo_creacion = strtotime($tema['fecha_creacion']);
+                    $limiteTiempo = strtotime('-24 hours');
+                    $esta_en_tiempo = ($tiempo_creacion >= $limiteTiempo);
 
-                <div class="tema-acciones">
-                    <button class="btn btn-ghost">Editar</button>
-                </div>
+                    if($tema['id_usuario'] == $id_usuario_actual && $esta_en_tiempo){
+                    ?>
+                        <form action="../editar_tema.php" method="POST" class="tema-acciones">
+                            <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
+
+                            <button class="btn btn-ghost">Editar</button>
+                        </form>
+                    <?php
+                    } 
+                    
+                    if($tema['id_usuario'] == $id_usuario_actual){
+                        ?>
+                        <form action="../eliminar_tema.php" class="tema-acciones" method="POST">
+                            <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
+
+                            <button class="btn btn-solid btn-eliminar" onclick="return confirm('¿Estás seguro de que quieres borrar el tema?')">Eliminar</button>
+                        </form>
+                        <?php
+                    }
+                ?>
+                
             </div>
 
             <!-- Sección de Respuestas -->
