@@ -38,17 +38,40 @@
             <?= $mensaje_cookie ?>
         </p>
         
-        <div class="search-box">
-            <input type="text" placeholder="Buscar palabras clave...">
+        <form class="search-box" method="GET">
+            <input type="text" placeholder="Buscar palabras clave..." name="busqueda" value="<?=htmlspecialchars($_GET['busqueda'] ?? '')?>">
             <button class="btn btn-solid">Buscar</button>
-        </div>
+        </form>
     </header>
 
     <div class="container">
         <main class="foro-main">
-            <?php 
+            <?php
+            if(isset($resultado_busqueda)){
+                if(mysqli_num_rows($resultado_busqueda) > 0){
+                    while($respuesta_busqueda = mysqli_fetch_assoc($resultado_busqueda)){
+                        ?>
+                        <article class="card-tema">
+                            <div class="tema-votos">
+                                <button class="btn-voto">👍</button>
+                                <span><?=$respuesta_busqueda['likes']?></span>
+                            </div>
+                            <div class="tema-contenido">
+                                <span class="etiqueta rojo"><?=htmlspecialchars($respuesta_busqueda['nombre_categoria'])?></span>
+                                <h2><a href="./paginas/tema.php?id=<?=$respuesta_busqueda['id_tema']?>"><?=htmlspecialchars($respuesta_busqueda['titulo'])?></a></h2>
+                                <p class="tema-meta">Publicado por <strong><?=htmlspecialchars($respuesta_busqueda['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($respuesta_busqueda['fecha_creacion']))?></p>
+                            </div>
+                        </article>
+                        <?php
+                    }
+                }else{
+                    ?>
+                    <p>No hay resultados para tu busqueda</p>
+                    <?php
+                }
+            }else{
                 while($respuesta = mysqli_fetch_assoc($resultado_temas)){
-                ?>
+                    ?>
                     <article class="card-tema">
                         <div class="tema-votos">
                             <button class="btn-voto">👍</button>
@@ -61,11 +84,11 @@
                         </div>
                     </article>
                     <?php
-                    }
+                }
+            }    
             ?>
         </main>
 
-        <!--Información extra con llamados a la accion-->
         <aside class="foro-sidebar">
             <div class="card-sidebar">
                 <h3>Sobre el foro</h3>
