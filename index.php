@@ -57,7 +57,7 @@
                                 <span><?=$respuesta_busqueda['likes']?></span>
                             </div>
                             <div class="tema-contenido">
-                                <span class="etiqueta rojo"><?=htmlspecialchars($respuesta_busqueda['nombre_categoria'])?></span>
+                                <span class="etiqueta <?=htmlspecialchars($respuesta_busqueda['color_etiqueta'])?>"><?=htmlspecialchars($respuesta_busqueda['nombre_categoria'])?></span>
                                 <h2><a href="./paginas/tema.php?id=<?=$respuesta_busqueda['id_tema']?>"><?=htmlspecialchars($respuesta_busqueda['titulo'])?></a></h2>
                                 <p class="tema-meta">Publicado por <strong><?=htmlspecialchars($respuesta_busqueda['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($respuesta_busqueda['fecha_creacion']))?></p>
                             </div>
@@ -66,7 +66,7 @@
                     }
                 }else{
                     ?>
-                    <p>No hay resultados para tu busqueda</p>
+                    <p class="tema-meta">No hay resultados para tu busqueda</p>
                     <?php
                 }
             }else{
@@ -78,7 +78,7 @@
                             <span><?=$respuesta['likes']?></span>
                         </div>
                         <div class="tema-contenido">
-                            <span class="etiqueta rojo"><?=htmlspecialchars($respuesta['nombre_categoria'])?></span>
+                            <span class="etiqueta <?=htmlspecialchars($respuesta['color_etiqueta'])?>"><?=htmlspecialchars($respuesta['nombre_categoria'])?></span>
                             <h2><a href="./paginas/tema.php?id=<?=$respuesta['id_tema']?>"><?=htmlspecialchars($respuesta['titulo'])?></a></h2>
                             <p class="tema-meta">Publicado por <strong><?=htmlspecialchars($respuesta['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($respuesta['fecha_creacion']))?></p>
                         </div>

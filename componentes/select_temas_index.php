@@ -7,6 +7,7 @@
 
         $sql_busqueda = "SELECT 
             temas.*, 
+            categorias.color_etiqueta,
             categorias.nombre AS nombre_categoria, 
             usuarios.username 
             FROM temas 
