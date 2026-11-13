@@ -1,5 +1,6 @@
 <?php 
-    require_once '../conexion.php';    
+    require_once '../conexion.php';  
+    session_start();  
 
     if (!isset($_GET['id']) || !is_numeric($_GET['id'])){
         die("Error: Tema no encontrado o URL inválida.");
@@ -184,7 +185,15 @@
                     <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
 
                     <textarea placeholder="Escribe tu respuesta aquí... Sé respetuoso y aporta valor." rows="5"
-                        class="input-textarea" name="contenido"></textarea>
+                        class="input-textarea" name="contenido" required></textarea>
+
+                        <?php 
+                            if(isset($_SESSION['errores']['contenido'])){
+                                ?>
+                                <p class="msj-error"><?=$_SESSION['errores']['contenido']?></p>
+                            <?php
+                            }
+                        ?>
                     <button type="submit" class="btn btn-solid">Publicar respuesta</button>
                 </form>
             </section>
@@ -203,7 +212,9 @@
     </div>
 
     <?php 
-        include_once '../componentes/nav.php'
+        include_once '../componentes/nav.php';
+        
+        unset($_SESSION['errores']);
     ?>
 </body>
 

@@ -1,5 +1,6 @@
 <?php 
     include_once './conexion.php';
+    session_start();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $id_tema = $_POST['id_tema'];
@@ -7,12 +8,17 @@
 
         $id_usuario = 1; // No tengo session aplicado, sino se aplicaria en esta linea
 
+        $errores = [];
+
         if(empty($contenido)){
-            die('La respuesta no debe estar vacia');
+            $errores['contenido'] = 'La respuesta no debe estar vacia';
         }
 
-        if(strlen($contenido) <= 5){
-            die('La respuesta debe tener mas de 5 caracteres');
+        if(count($errores) > 0){
+            $_SESSION['errores'] = $errores;
+
+            header("Location: paginas/tema.php?id=" . $id_tema); 
+            exit();
         }
 
         $sql_respuesta = 'INSERT INTO respuestas (contenido, id_tema, id_usuario, fecha_creacion) VALUES (?, ?, ?, NOW())';
