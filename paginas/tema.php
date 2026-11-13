@@ -138,6 +138,7 @@
                                 <div class="comentario-votos">
                                     <form action="../dar_like_respuesta.php" method="POST">
                                         <input type="hidden" name="id_tema" value="<?=$tema['id_tema']?>">
+                                        <input type="hidden" name="id_respuesta" value="<?=$respuesta['id_respuesta']?>">
                                         <button class="btn-voto">👍</button>
                                     </form>
                                     <span>

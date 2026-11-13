@@ -8,13 +8,14 @@
         }
 
         $id_tema = $_POST['id_tema'];
+        $id_respuesta = $_POST['id_respuesta'];
 
-        $sql_likes = "UPDATE respuestas SET likes = likes + 1 WHERE id_tema = ?";
+        $sql_likes = "UPDATE respuestas SET likes = likes + 1 WHERE id_tema = ? AND id_respuesta = ?";
         
         $stmt = mysqli_prepare($conexion, $sql_likes);
 
         if($stmt){
-            mysqli_stmt_bind_param($stmt, 'i', $id_tema);
+            mysqli_stmt_bind_param($stmt, 'ii', $id_tema, $id_respuesta);
 
             if(mysqli_stmt_execute($stmt)){
                 header("Location: paginas/tema.php?id=" . $id_tema);
