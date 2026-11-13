@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 <body>
 
     <?php 
-        include_once '../componentes/nav.php'
+        include_once '../componentes/nav.php';
     ?>
 
     <div class="page-header header-admin">
@@ -23,17 +26,39 @@
     <div class="container contenedor-centrado">
         <main class="form-card w-100">
 
-        <!--Formulario para la creacion de tópicos -->
             <form action="../guardar_categoria.php" method="POST" class="formulario-brutal">
+
+                <?php 
+                    if(isset($_SESSION['errores']['general'])){
+                    ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['general']?></p>
+                    <?php
+                    }
+                ?>
                 
                 <div class="form-group">
                     <label for="nombre_categoria">Nombre de la Categoría</label>
-                    <input type="text" id="nombre_categoria" name="nombre_categoria" placeholder="Ej: Bases de Datos, Off-Topic, etc." required>
+                    <input type="text" id="nombre_categoria" name="nombre_categoria" placeholder="Ej: Bases de Datos, Off-Topic, etc." value="<?=$_SESSION['datos']['nombre_categoria'] ?? '' ?>"required>
+
+                    <?php 
+                    if(isset($_SESSION['errores']['nombre'])){
+                    ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['nombre']?></p>
+                    <?php
+                    }
+                ?>
                 </div>
 
                 <div class="form-group">
                     <label for="descripcion_categoria">Descripción breve</label>
-                    <textarea id="descripcion_categoria" name="descripcion_categoria" rows="3" placeholder="¿De qué trata esta sección? (Aparecerá debajo del nombre)" required></textarea>
+                    <textarea id="descripcion_categoria" name="descripcion_categoria" rows="3" placeholder="¿De qué trata esta sección?" required><?=$_SESSION['datos']['descripcion_categoria'] ?? '' ?></textarea>
+                    <?php 
+                    if(isset($_SESSION['errores']['descripcion'])){
+                    ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['descripcion']?></p>
+                    <?php
+                    }
+                ?>
                 </div>
 
                 <div class="form-group">
@@ -63,7 +88,10 @@
     </div>
 
     <?php 
-        include_once '../componentes/footer.php'
+        include_once '../componentes/footer.php';
+
+        unset($_SESSION['errores']);
+        unset($_SESSION['datos']);
     ?>
 </body>
 </html>
