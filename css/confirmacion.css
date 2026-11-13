@@ -1,0 +1,37 @@
+.contenedor-confirmacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8fafc; 
+}
+
+.tarjeta-confirmacion {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    padding: 50px 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.icono-exito {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.tarjeta-confirmacion h2 {
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.tarjeta-confirmacion p {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}

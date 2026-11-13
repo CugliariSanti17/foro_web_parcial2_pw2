@@ -45,6 +45,7 @@
     <?php 
         include_once '../componentes/nav.php'
     ?>
+
     <div class="page-header">
         <div class="page-header-content">
             <h1>Explorar Discusiones</h1>
@@ -54,7 +55,6 @@
 
     <div class="container">
         <main class="foro-main">
-            <!-- Filtros -->
             <div class="filtros-bar">
                 <div class="filtros-grupo">
                     <a class="btn btn-solid btn-sm" href="./discusiones.php">Todos</a>
@@ -76,7 +76,6 @@
                 </div>
             </div>
 
-            <!-- Discusiones -->
             <div class="lista-temas">
 
                 <?php 
@@ -97,7 +96,7 @@
                     }
                 ?>
                 
-            <!-- Paginación (ver si dejarlo o no) -->
+            <!-- Paginación (ver si dejarlo o no)
             <div class="paginacion">
                 <button class="btn btn-ghost" disabled>← Anterior</button>
                 <div class="paginas-numeros">
@@ -109,9 +108,10 @@
                 </div>
                 <button class="btn btn-ghost">Siguiente →</button>
             </div>
+             -->
+             
         </main>
 
-        <!-- Barra lateral con llamados a la accion y estadisticas -->
         <aside class="foro-sidebar">
             <div class="card-sidebar card-destacada">
                 <h3>¿Tienes una duda?</h3>

@@ -27,8 +27,7 @@
             <div class="form-card">
                 <h2>Envíanos tu mensaje</h2>
                 
-                <!-- Formulario sugerencias -->
-                <form action="#" method="POST" class="formulario-brutal">
+                <form action="../guardar_sugerencia.php" method="POST" class="formulario-brutal">
                     
                     <div class="form-row">
                         <div class="form-group">

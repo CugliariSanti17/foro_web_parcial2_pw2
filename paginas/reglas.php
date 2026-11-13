@@ -23,8 +23,6 @@
     <div class="container">
         <main class="foro-main">
             <div class="lista-reglas">
-
-                <!-- Reglas -->
     
                 <article class="regla-card">
                     <div class="regla-numero color-1">01</div>
@@ -59,8 +57,6 @@
                 </article>
             </div>
         </main>
-
-        <!--Información extra-->
         
         <aside class="foro-sidebar">
             <div class="card-sidebar card-advertencia">
