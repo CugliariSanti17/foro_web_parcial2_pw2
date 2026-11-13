@@ -1,5 +1,6 @@
 <?php 
     require_once './conexion.php';
+    session_start();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $nombre = trim($_POST['nombre']);
@@ -8,12 +9,26 @@
         $motivo_sugerencia = trim($_POST['motivo']);
         $mensaje = trim($_POST['mensaje']);
 
+        $errores = [];
+
         if (empty($nombre) || empty($apellido) || empty($email) || empty($motivo_sugerencia) || empty($mensaje)){
-            echo '<p>Todos los campos deben ser completos</p>';
+            $errores['general'] = "Todos los campos deben ser completos";
         }
 
         if (!str_contains($email, "@")){
-            echo "<p>El email debe tener un formato correcto</p>";
+            $errores['email'] = "El email debe tener un formato correcto";
+        }
+
+        if(strlen($mensaje) <= 3){
+            $errores['mensaje'] = "El campo mensaje debe tener más de 3 caracteres";
+        }
+
+        if(count($errores)){
+            $_SESSION['errores'] = $errores;
+            $_SESSION['datos'] = $_POST;
+
+            header("Location: paginas/sugerencias.php"); 
+            exit();
         }
 
         $sql_sugerencia = "INSERT INTO sugerencias (nombre, apellido, email, motivo, mensaje, fecha_envio) VALUES (?,?,?,?,?, NOW())";

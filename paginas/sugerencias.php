@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,21 +32,36 @@
                 <h2>Envíanos tu mensaje</h2>
                 
                 <form action="../guardar_sugerencia.php" method="POST" class="formulario-brutal">
+
+                    <?php 
+                        if(isset($_SESSION['errores']['general'])){
+                            ?>
+                            <p class="msj-error"><?=$_SESSION['errores']['general']?></p>
+                            <?php
+                        }
+                    ?>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required value="<?=$_SESSION['datos']['nombre'] ?? '' ?>">
                         </div>
                         <div class="form-group">
                             <label for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+                            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required value="<?=$_SESSION['datos']['apellido'] ?? '' ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required value="<?=$_SESSION['datos']['email'] ?? '' ?>">
+                        <?php 
+                             if(isset($_SESSION['errores']['email'])){
+                                ?>
+                                <p class="msj-error"><?=$_SESSION['errores']['email']?></p>
+                                <?php
+                            }
+                        ?>
                     </div>
 
                     <div class="form-group">
@@ -58,7 +77,14 @@
 
                     <div class="form-group">
                         <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu sugerencia o idea aquí..." required></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu sugerencia o idea aquí..." required><?=$_SESSION['datos']['mensaje'] ?? '' ?></textarea>
+                        <?php 
+                             if(isset($_SESSION['errores']['mensaje'])){
+                                ?>
+                                <p class="msj-error"><?=$_SESSION['errores']['mensaje']?></p>
+                                <?php
+                            }
+                        ?>
                     </div>
 
                     <button type="submit" class="btn btn-solid btn-full">Enviar Sugerencia</button>
@@ -81,7 +107,10 @@
     </div>
 
     <?php 
-        include_once '../componentes/footer.php'
+        include_once '../componentes/footer.php';
+
+        unset($_SESSION['errores']);
+        unset($_SESSION['datos']);
     ?>
 </body>
 </html>
