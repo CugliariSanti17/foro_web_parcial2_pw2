@@ -3,6 +3,8 @@
 
     require_once '../componentes/cargar_formulario_discusion.php';
 
+    session_start();
+
     $sql_categorias = 'SELECT id_categoria, nombre FROM categorias';
 
     $resultado_categorias = mysqli_query($conexion, $sql_categorias);
@@ -21,7 +23,7 @@
 <body>
 
     <?php 
-        include_once '../componentes/nav.php'
+        include_once '../componentes/nav.php';
     ?>
 
     <div class="page-header header-formularios">
@@ -42,10 +44,26 @@
                     <?php
                     }
                 ?>
+
+                <?php 
+                    if(isset($_SESSION['errores']['general'])){
+                        ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['general']?></p>
+                        <?php
+                    }
+                ?>
                 
                 <div class="form-group">
                     <label for="titulo">Título del tema</label>
-                    <input type="text" id="titulo" name="titulo" value="<?=htmlspecialchars($titulo)?>" placeholder="¿Cómo centrar un div en 2026?" required>
+                    <input type="text" id="titulo" name="titulo" value="<?=$_SESSION['datos']['titulo'] ?? htmlspecialchars($titulo ?? '')?>" placeholder="¿Cómo centrar un div en 2026?" required>
+
+                    <?php 
+                    if(isset($_SESSION['errores']['titulo'])){
+                        ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['titulo']?></p>
+                        <?php
+                    }
+                ?>
                 </div>
 
                 <div class="form-group">
@@ -66,7 +84,15 @@
 
                 <div class="form-group">
                     <label for="contenido">Contenido</label>
-                    <textarea id="contenido" name="contenido" rows="10" placeholder="Explica tu duda o comparte tu idea con detalle..." required><?=htmlspecialchars($contenido)?></textarea>
+                    <textarea id="contenido" name="contenido" rows="10" placeholder="Explica tu duda o comparte tu idea con detalle..." required><?=$_SESSION['datos']['titulo'] ?? htmlspecialchars($contenido ?? '')?></textarea>
+
+                    <?php 
+                    if(isset($_SESSION['errores']['contenido'])){
+                        ?>
+                        <p class="msj-error"><?=$_SESSION['errores']['contenido']?></p>
+                        <?php
+                    }
+                ?>
                 </div>
 
                 <div class="form-acciones">
@@ -78,7 +104,10 @@
     </div>
 
     <?php 
-        include_once '../componentes/footer.php'
+        include_once '../componentes/footer.php';
+
+        unset($_SESSION['errores']);
+        unset($_SESSION['datos']);
     ?>
 </body>
 </html>

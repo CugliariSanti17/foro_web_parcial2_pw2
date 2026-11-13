@@ -1,5 +1,6 @@
 <?php 
     require_once './conexion.php';
+    session_start();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $titulo = $_POST['titulo'];
@@ -8,16 +9,26 @@
 
         $id_usuario_actual = 1; //LINEA PROVISORIA HASTA APLICAR SESSION 
 
+        $errores = [];
+
         if(empty($titulo) || empty($contenido) || empty($id_categoria)){
-            echo "<p>Todos los campos deben ser completados</p>";
+            $errores['general'] = "Todos los campos deben ser completados";
         }
 
          if(strlen($titulo) <= 5){
-            echo "<p>El titulo debe tener más de 5 caracteres</p>";
+            $errores['titulo'] = "El titulo debe tener más de 5 caracteres";
         }
 
         if(strlen($contenido) <= 5){
-            echo "<p>El contenido debe tener más de 5 caracteres</p>";
+            $errores['contenido'] = "El contenido debe tener más de 5 caracteres";
+        }
+
+        if(count($errores) > 0){
+            $_SESSION['errores'] = $errores;
+            $_SESSION['datos'] = $_POST;
+
+            header("Location: paginas/formularioDiscusion.php"); 
+            exit();
         }
 
         $sql_publicar_tema = 'INSERT INTO temas (titulo, contenido, id_categoria, id_usuario, fecha_creacion) VALUES (?, ?, ?, ?, NOW())';
