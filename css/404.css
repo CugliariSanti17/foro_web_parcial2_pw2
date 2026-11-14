@@ -1,0 +1,66 @@
+
+.body-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f6f9; 
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.contenedor-404 {
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.tarjeta-404 {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.titulo-404 {
+    font-size: 120px;
+    font-weight: 900;
+    color: #2c3e50;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.subtitulo-404 {
+    font-size: 24px;
+    color: #34495e;
+    margin: 20px 0 10px 0;
+}
+
+.texto-404 {
+    color: #6c757d;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-volver-404 {
+    display: inline-block;
+    background-color: #0d6efd; 
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-volver-404:hover {
+    background-color: #0b5ed7; 
+    color: #ffffff;
+}
+
+.btn-volver-404:active {
+    transform: scale(0.97);
+}

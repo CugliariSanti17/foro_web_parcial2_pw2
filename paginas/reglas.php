@@ -6,6 +6,7 @@
     <title>Reglas | El Tintero</title>
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/reglas.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
 

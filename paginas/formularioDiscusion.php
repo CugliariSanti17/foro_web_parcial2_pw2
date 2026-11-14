@@ -18,6 +18,7 @@
     <title><?= $es_edicion ? 'Editar tema | El tintero' : 'Crear tema | El tintero'?></title>
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/formularios.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     
 </head>
 <body>
