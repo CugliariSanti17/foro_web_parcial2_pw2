@@ -109,7 +109,7 @@
                     <?php 
                         while($categoria = mysqli_fetch_assoc($resultado_categorias)){
                         ?>
-                            <span class="etiqueta <?=$categoria['color_etiqueta']?>"><?=$categoria['nombre']?></span>
+                            <span class="etiqueta <?=htmlspecialchars($categoria['color_etiqueta'])?>"><?=htmlspecialchars($categoria['nombre'])?></span>
                         <?php
                         }
                     ?>

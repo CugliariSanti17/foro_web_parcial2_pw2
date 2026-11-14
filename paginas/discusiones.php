@@ -42,7 +42,7 @@
                     <?php 
                         while($respuesta = mysqli_fetch_assoc($resultado_categorias)){
                             ?>
-                            <a href="./discusiones.php?id_categoria=<?=$respuesta['id_categoria']?>" class="btn <?=(isset($_GET['id_categoria']) && (int) $_GET['id_categoria'] == $respuesta['id_categoria'] ? 'btn-solid' : 'btn-ghost')?> btn-sm"><?=$respuesta['nombre']?></a>
+                            <a href="./discusiones.php?id_categoria=<?=$respuesta['id_categoria']?>" class="btn <?=(isset($_GET['id_categoria']) && (int) $_GET['id_categoria'] == $respuesta['id_categoria'] ? 'btn-solid' : 'btn-ghost')?> btn-sm"><?=htmlspecialchars($respuesta['nombre'])?></a>
                             <?php
                         }
                     ?>
@@ -78,7 +78,7 @@
                                 <span><?= $discusion['likes'] ?></span>
                             </div>
                             <div class="tema-contenido">
-                                <span class="etiqueta <?=$discusion['color_etiqueta']?>"><?= $discusion['nombre_categoria']?></span>
+                                <span class="etiqueta <?=htmlspecialchars($discusion['color_etiqueta'])?>"><?=htmlspecialchars($discusion['nombre_categoria'])?></span>
                                 <h2><a href="./tema.php?id=<?=$discusion['id_tema']?>"><?= htmlspecialchars($discusion['titulo'])?></a></h2>
                                 <p class="tema-meta">Publicado por <strong><?= htmlspecialchars($discusion['username'])?></strong> el <?=date('d/m/Y H:i', strtotime($discusion['fecha_creacion'])) ?> • <?=$discusion['vistas']?> vistas</p>
                             </div>
@@ -87,20 +87,6 @@
                     }
                 ?>
                 
-            <!-- Paginación (ver si dejarlo o no)
-            <div class="paginacion">
-                <button class="btn btn-ghost" disabled>← Anterior</button>
-                <div class="paginas-numeros">
-                    <button class="btn btn-solid">1</button>
-                    <button class="btn btn-ghost">2</button>
-                    <button class="btn btn-ghost">3</button>
-                    <span>...</span>
-                    <button class="btn btn-ghost">10</button>
-                </div>
-                <button class="btn btn-ghost">Siguiente →</button>
-            </div>
-             -->
-             
         </main>
 
         <aside class="foro-sidebar">

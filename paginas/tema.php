@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tema | El Tintero</title>
+    <title><?=$tema['titulo']?> | El Tintero</title>
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/tema.css">
 </head>
@@ -36,7 +36,7 @@
         <main class="tema-principal">
             <div class="tema-detalle-card">
                 <div class="tema-cabecera">
-                    <span class="etiqueta <?=$tema['color_etiqueta']?>">
+                    <span class="etiqueta <?=htmlspecialchars($tema['color_etiqueta'])?>">
                         <?=htmlspecialchars($tema['nombre_categoria'])?>
                     </span>
                     <h1>
@@ -46,7 +46,7 @@
                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Juan" alt="Avatar" class="avatar">
                         <div class="meta-info">
                             <strong>
-                                <?=$tema['username']?>
+                                <?=htmlspecialchars($tema['username'])?>
                             </strong>
                             <span>Publicado el
                                 <?=date('d/m/Y H:i', strtotime($tema['fecha_creacion']))?>
