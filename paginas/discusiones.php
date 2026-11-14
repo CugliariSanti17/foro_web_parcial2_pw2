@@ -1,31 +1,12 @@
  <?php 
     require_once '../conexion.php';
 
-    $sql_discusiones = "SELECT 
-        temas.*,
-        usuarios.username,
-        categorias.nombre AS nombre_categoria,
-        categorias.color_etiqueta
-        FROM temas
-        INNER JOIN usuarios ON temas.id_usuario = usuarios.id_usuario
-        INNER JOIN categorias on temas.id_categoria = categorias.id_categoria
-    ";
-
-    if(isset($_GET['id_categoria']) && is_numeric($_GET['id_categoria'])){
-        $id_categoria = (int) $_GET['id_categoria'];
-
-        $sql_discusiones .= " WHERE temas.id_categoria = $id_categoria";
-    }
-
-    $sql_discusiones .= " ORDER BY temas.fecha_creacion DESC"; 
+    require_once '../componentes/filtrado_discusiones.php';
 
     $sql_respuestas = 'SELECT * FROM respuestas';
-
     $sql_usuarios = 'SELECT username FROM usuarios';
-
     $sql_categorias = 'SELECT nombre, id_categoria FROM categorias';
 
-    $resultado_discusiones = mysqli_query($conexion, $sql_discusiones);
     $resultado_respuestas = mysqli_query($conexion, $sql_respuestas);
     $resultado_usuarios = mysqli_query($conexion, $sql_usuarios);
     $resultado_categorias = mysqli_query($conexion, $sql_categorias);
@@ -57,22 +38,32 @@
         <main class="foro-main">
             <div class="filtros-bar">
                 <div class="filtros-grupo">
-                    <a class="btn btn-solid btn-sm" href="./discusiones.php">Todos</a>
+                    <a class="btn <?=!isset($_GET['id_categoria']) ? 'btn-solid' : 'btn-ghost'?> btn-sm" href="./discusiones.php">Todos</a>
                     <?php 
                         while($respuesta = mysqli_fetch_assoc($resultado_categorias)){
                             ?>
-                            <a href="./discusiones.php?id_categoria=<?=$respuesta['id_categoria']?>" class="btn btn-ghost btn-sm"><?=$respuesta['nombre']?></a>
+                            <a href="./discusiones.php?id_categoria=<?=$respuesta['id_categoria']?>" class="btn <?=(isset($_GET['id_categoria']) && (int) $_GET['id_categoria'] == $respuesta['id_categoria'] ? 'btn-solid' : 'btn-ghost')?> btn-sm"><?=$respuesta['nombre']?></a>
                             <?php
                         }
                     ?>
                 </div>
 
                 <div class="orden-grupo">
-                    <select class="select-brutal">
-                        <option>Más recientes</option>
-                        <option>Más votados</option>
-                        <option>Sin respuestas</option>
-                    </select>
+                    <form action="./discusiones.php" method="GET">
+                        <?php 
+                            if(isset($_GET['id_categoria'])){
+                                ?>
+                                <input type="hidden" name="id_categoria" value="<?=(int)$_GET['id_categoria']?>">
+                            <?php 
+                            }
+                        ?>
+
+                        <select class="select-brutal" name="filtro" onchange="this.form.submit()">
+                            <option value="recientes" <?=(isset($_GET['filtro']) && $_GET['filtro'] === 'recientes' ? 'selected' : '')?>>Más recientes</option>
+                            <option value="likes" <?=(isset($_GET['filtro']) && $_GET['filtro'] === 'likes' ? 'selected' : '')?>>Más likes</option>
+                            <option value="sin_respuestas" <?=(isset($_GET['filtro']) && $_GET['filtro'] === 'sin_respuestas' ? 'selected' : '')?>>Sin respuestas</option>
+                        </select>
+                    </form>
                 </div>
             </div>
 
