@@ -10,25 +10,25 @@
         $id_tema = $_POST['id_tema'];
         $id_respuesta = $_POST['id_respuesta'];
 
-        $sql_likes = "UPDATE respuestas SET likes = likes + 1 WHERE id_tema = ? AND id_respuesta = ?";
+        $sql_likes = "UPDATE respuestas SET likes = likes + 1 WHERE id_respuesta = ?";
         
         $stmt = mysqli_prepare($conexion, $sql_likes);
 
         if($stmt){
-            mysqli_stmt_bind_param($stmt, 'ii', $id_tema, $id_respuesta);
+            mysqli_stmt_bind_param($stmt, 'i', $id_respuesta);
 
             if(mysqli_stmt_execute($stmt)){
                 header("Location: paginas/tema.php?id=" . $id_tema);
                 exit();
             }else{
-                echo "<p>Error al dar like</p>";
+                die("Error al dar like");
             }
 
             mysqli_stmt_close($stmt);
         }else{
-            echo "<p>Error preparando la consulta</p>";
+            die("Error preparando la consulta");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

@@ -41,14 +41,14 @@
                 header("Location: paginas/confirmacion_sugerencia.php");
                 exit();
             }else{
-                echo "<p>Error al guardar la sugerencia</p>";
+                die("Error al guardar la sugerencia");
             }
 
              mysqli_stmt_close($stmt_sugerencia);
         }else{
-            echo "<p>Error preparando la consulta SQL</p>";
+            die("Error preparando la consulta SQL");
         }
     }else{
-        echo '<p>Acceso denegado</p>';
+        die("Acceso denegado");
     }   
 ?>

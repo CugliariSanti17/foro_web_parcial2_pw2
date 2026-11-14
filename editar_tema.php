@@ -51,12 +51,14 @@
                 header("Location: paginas/tema.php?id=" . $id_tema);
                 exit();
             }else{
-                echo "<p>Error al actualizar el tema</p>";
+                die("Error al actualizar el tema");
             }
 
             mysqli_stmt_close($stmt_update);
+        }else{
+            die("Error preparando la consulta");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

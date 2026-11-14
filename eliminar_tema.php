@@ -27,14 +27,14 @@
                 header("Location: paginas/discusiones.php");
                 exit();
             }else{
-                echo "<p>Error al borrar tema</p>";
+                die("Error al borrar tema");
             }
 
             mysqli_stmt_close($stmt_tema);
         }else{
-            echo "<p>Error al preparar la consulta</p>";
+            die("Error al preparar la consulta");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

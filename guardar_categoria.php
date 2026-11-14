@@ -40,14 +40,14 @@
                 header("Location: index.php");
                 exit();
             }else{
-                echo "<p>Error al crear una nueva categoria</p>";
+                die("Error al crear una nueva categoria");
             }
 
             mysqli_stmt_close($stmt);
         }else{
-            echo "<p>Error al ejecutar la consulta</p>";
+            die("Error al ejecutar la consulta");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

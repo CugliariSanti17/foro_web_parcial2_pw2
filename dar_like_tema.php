@@ -20,14 +20,14 @@
                 header("Location: paginas/tema.php?id=" . $id_tema);
                 exit();
             }else{
-                echo "<p>Error al dar like</p>";
+                die("Error al dar like");
             }
 
             mysqli_stmt_close($stmt);
         }else{
-            echo "<p>Error preparando la consulta</p>";
+            die("Error preparando la consulta");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

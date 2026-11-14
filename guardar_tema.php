@@ -42,13 +42,14 @@
                 header("Location: paginas/discusiones.php");
                 exit();
             }else {
-                echo "<p>Error al guardar el tema</p>";
+                die("Error al guardar el tema");
             }
+
             mysqli_stmt_close($stmt);
         }else{
-            echo "<p>Error preparando la consulta SQL</p>";
+            die("Error preparando la consulta SQL");
         }
     }else{
-        echo "<p>Acceso denegado</p>";
+        die("Acceso denegado");
     }
 ?>

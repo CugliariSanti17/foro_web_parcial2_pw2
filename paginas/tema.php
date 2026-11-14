@@ -184,7 +184,7 @@
     </div>
 
     <?php 
-        include_once '../componentes/nav.php';
+        include_once '../componentes/footer.php';
         
         unset($_SESSION['errores']);
     ?>

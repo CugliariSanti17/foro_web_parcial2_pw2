@@ -16,7 +16,7 @@
     if(isset($_GET['id_categoria']) && is_numeric($_GET['id_categoria'])){
         $id_categoria = (int) $_GET['id_categoria'];
 
-        $condiciones[] = "temas.id_categoria = $id_categoria";
+        $condiciones[] = "temas.id_categoria = ?";
     }
 
     $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : 'recientes';
@@ -35,6 +35,12 @@
         $sql_discusiones .= " ORDER BY temas.fecha_creacion DESC";
     }
 
-    $resultado_discusiones = mysqli_query($conexion, $sql_discusiones);
+    $stmt_discusiones = mysqli_prepare($conexion, $sql_discusiones);
+    
+    if(count($condiciones) > 0){
+        mysqli_stmt_bind_param($stmt_discusiones, 'i', $id_categoria);
+    }
 
+    mysqli_stmt_execute($stmt_discusiones);
+    $resultado_discusiones = mysqli_stmt_get_result($stmt_discusiones);
 ?>
